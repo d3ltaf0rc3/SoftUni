@@ -23,7 +23,7 @@ function solve(input) {
     });
 }
 
-systemsRegister([
+solve([
     'SULS | Main Site | Home Page',
     'SULS | Main Site | Login Page',
     'SULS | Main Site | Register Page',
