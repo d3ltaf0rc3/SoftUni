@@ -4,7 +4,7 @@ function amazingNums(num) {
 
     for (let index = 0; index < num.length; index++) {
         const element = num[index];
-        sum += Number(element)
+        sum += Number(element);
     }
     let result = sum.toString().includes("9");
     console.log(result ? `${num} Amazing? True`:`${num} Amazing? False`);

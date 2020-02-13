@@ -5,7 +5,7 @@ function sumDigits(number) {
         let symbol = number[i];
         sum += Number(symbol);
     }
-    console.log(sum)
+    console.log(sum);
 }
 
 sumDigits(15);

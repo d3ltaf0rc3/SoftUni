@@ -15,7 +15,7 @@ function bitcoinMining(input) {
             dayMoney *= 0.7;
             totalMoney += dayMoney;
         } else {
-            totalMoney += dayMoney
+            totalMoney += dayMoney;
         }
 
         while (totalMoney >= bitcoinPrice) {

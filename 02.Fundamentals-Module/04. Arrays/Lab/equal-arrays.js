@@ -12,9 +12,9 @@ function equalArrays(arr1, arr2) {
     }
 
     if (areIdentical === true) {
-        console.log(`Arrays are identical. Sum: ${sum}`)
+        console.log(`Arrays are identical. Sum: ${sum}`);
     } else {
-        console.log(`Arrays are not identical. Found difference at ${i} index`)
+        console.log(`Arrays are not identical. Found difference at ${i} index`);
     }
 }
 
