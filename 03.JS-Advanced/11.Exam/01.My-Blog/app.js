@@ -1,10 +1,20 @@
 function solve() {
    function sortList(list) {
-      Array.from(list.children)
-         .sort((a, b) => a.textContent
-            .localeCompare(b.textContent))
-         .forEach(li => {
-            list.appendChild(li);
+      let allElements = Array.from(list.getElementsByTagName('li'));
+      let valuesArr = [];
+
+      for (const element of allElements) {
+         valuesArr.push(element.textContent);
+      }
+
+      list.innerHTML = '';
+
+      valuesArr
+         .sort((a, b) => a.localeCompare(b))
+         .forEach(val => {
+            let newLi = document.createElement('li');
+            newLi.textContent = val;
+            list.appendChild(newLi);
          });
    }
 
