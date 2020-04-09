@@ -3,15 +3,6 @@ import models from '../models/index.js';
 
 export default {
     get: {
-        allDataPage(context) {
-            models.cause.getAll().then(response => {
-                const data = response.docs.map(docModifier);
-                context.data = data;
-                extend(context).then(function () {
-                    this.partial('../views/cause/example.hbs');
-                });
-            });
-        },
         createPage(context) {
             extend(context).then(function () {
                 this.partial('../views/articles/create.hbs');
