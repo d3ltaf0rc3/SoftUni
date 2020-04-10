@@ -42,15 +42,30 @@ export default {
                             for (const key in data) {
                                 context[key] = data[key];
                             }
-                            if (localStorage.getItem("userId") === data.uid) {
-                                context.isOrganizer = true;
-                            } else {
-                                context.isOrganizer = false;
+                            for (const user of data.members) {
+                                if (user.username === localStorage.getItem("userEmail")) {
+                                    context.isOnTeam = true;
+                                    break;
+                                } else {
+                                    context.isOnTeam = false;
+                                }
                             }
+                            if (localStorage.getItem("userId") === data.uid) {
+                                context.isAuthor = true;
+                            } else {
+                                context.isAuthor = false;
+                            }
+
                             this.partial("../templates/catalog/details.hbs");
                         })
                         .catch(err => console.error(err));
                 });
+        },
+        editPage(context) {
+            extend(context).then(function () {
+                context.id = localStorage.getItem("teamID");
+                this.partial("../templates/edit/editPage.hbs");
+            });
         }
     },
     post: {
@@ -77,8 +92,48 @@ export default {
         }
     },
     put: {
-        donate(context) {
-
+        edit(context) {
+            let { name, comment } = context.params;
+            models.teams.get(localStorage.getItem("teamID"))
+                .then(res => {
+                    let data = res.data();
+                    data.name = name;
+                    data.comment = comment;
+                    models.teams.put(localStorage.getItem("teamID"), data)
+                        .then(() => {
+                            extend(context)
+                                .then(function () {
+                                    this.redirect("#/catalog");
+                                });
+                        });
+                })
+                .catch(err => console.error(err));
+        },
+        leave(context) {
+            models.teams.get(localStorage.getItem("teamID"))
+                .then(res => {
+                    let data = res.data();
+                    let index = data.members.findIndex(obj => obj.username === localStorage.getItem("userEmail"));
+                    data.members.splice(index, 1);
+                    if (data.members === [] || data.uid === localStorage.getItem("userId")) {
+                        models.teams.delete(localStorage.getItem("teamID"))
+                        .then(() => {
+                            extend(context)
+                                .then(function () {
+                                    context.redirect("#/catalog");
+                                });
+                        });
+                    } else {
+                        models.teams.put(localStorage.getItem("teamID"), data)
+                        .then(() => {
+                            extend(context)
+                                .then(function () {
+                                    context.redirect("#/catalog");
+                                });
+                        });
+                    }
+                })
+                .catch(err => console.error(err));
         }
     }
 };

@@ -27,6 +27,7 @@ export default function extend(context) {
         teamMember:'../templates/catalog/teamMember.hbs',
         teamControls: '../templates/catalog/teamControls.hbs',
         createForm: '../templates/create/createForm.hbs',
+        editForm:'../templates/edit/editForm.hbs',
         header: '../templates/common/header.hbs',
         footer: '../templates/common/footer.hbs'
     });

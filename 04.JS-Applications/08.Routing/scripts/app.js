@@ -14,5 +14,8 @@ var app = Sammy('#main', function () {
     this.get('#/create', controllers.teams.get.createPage);
     this.post('#/create', controllers.teams.post.create);
     this.get('#/catalog/:id', controllers.teams.get.detailsPage);
+    this.get('#/edit', controllers.teams.get.editPage);
+    this.post('#/edit/:id', controllers.teams.put.edit);
+    this.get('#/leave/:id', controllers.teams.put.leave);
 });
 app.run('#/home');

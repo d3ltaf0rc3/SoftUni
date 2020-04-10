@@ -8,7 +8,16 @@ export default {
                 const data = response.docs.map(function (d) {
                     return { ...d.data(), id: d.id };
                 });
-                
+                context.teams = data;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].uid === localStorage.getItem("userId")) {
+                        context.hasTeam = true;
+                        context.id = data[i].id;
+                        break;
+                    } else {
+                        context.hasTeam = false;
+                    }
+                }
                 extend(context).then(function () {
                     this.partial('../templates/home/home.hbs');
                 });
