@@ -1,8 +1,12 @@
-const fs = require("fs");
 const db = require("../config/database.json");
 
 function getCubes() {
-
+    return db;
 }
 
-module.exports = getCubes;
+function getCube(id) {
+    const cube = db.find(obj => obj.id === id);
+    return cube;
+}
+
+module.exports = { getCubes, getCube };
