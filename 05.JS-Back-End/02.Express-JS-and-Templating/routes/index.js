@@ -1,4 +1,5 @@
 const express = require("express");
+const Cube = require("../models/cube");
 const { getCubes, getCube } = require("../controllers/cubes");
 const router = express.Router();
 
@@ -21,10 +22,19 @@ router.get("/create", (req, res) => {
     });
 });
 
+router.post("/create", (req, res) => {
+    const { name, description, imageUrl, difficulty } = req.body;
+
+    const newCube = new Cube(name, description, imageUrl, difficulty);
+    newCube.save();
+
+    res.redirect("/");
+});
+
 router.get("/details/:id", (req, res) => {
     const id = req.params.id;
     const cube = getCube(id);
-    
+
     res.render("details", {
         title: "Details | Cube Workshop",
         ...cube
