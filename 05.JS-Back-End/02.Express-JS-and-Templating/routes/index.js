@@ -3,10 +3,10 @@ const Cube = require("../models/cube");
 const { getCubes, getCube } = require("../controllers/cubes");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
     res.render("index", {
         title: "Home | Cube Workshop",
-        cubes: getCubes()
+        cubes: await getCubes()
     });
 });
 
@@ -25,15 +25,15 @@ router.get("/create", (req, res) => {
 router.post("/create", (req, res) => {
     const { name, description, imageUrl, difficulty } = req.body;
 
-    const newCube = new Cube(name, description, imageUrl, difficulty);
+    const newCube = new Cube({name, description, imageUrl, difficulty});
     newCube.save();
 
     res.redirect("/");
 });
 
-router.get("/details/:id", (req, res) => {
+router.get("/details/:id", async (req, res) => {
     const id = req.params.id;
-    const cube = getCube(id);
+    const cube = await getCube(id);
 
     res.render("details", {
         title: "Details | Cube Workshop",

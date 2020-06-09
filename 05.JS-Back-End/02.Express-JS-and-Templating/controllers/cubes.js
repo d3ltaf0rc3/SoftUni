@@ -1,11 +1,12 @@
-const db = require("../config/database.json");
+const Cube = require("../models/cube");
 
-function getCubes() {
-    return db;
+async function getCubes() {
+    const cubes = await Cube.find().lean();
+    return cubes;
 }
 
-function getCube(id) {
-    const cube = db.find(obj => obj.id === id);
+async function getCube(id) { 
+    const cube = await Cube.findById(id).lean();
     return cube;
 }
 
