@@ -5,9 +5,22 @@ async function getCubes() {
     return cubes;
 }
 
-async function getCube(id) { 
+async function getCube(id) {
     const cube = await Cube.findById(id).lean();
     return cube;
 }
 
-module.exports = { getCubes, getCube };
+async function updateCube(id, accessoryId) {
+    await Cube.findByIdAndUpdate(id, {
+        $addToSet: {
+            accessories: [accessoryId]
+        }
+    });
+}
+
+async function getCubeWithAccessories(id) {
+    const cube = await Cube.findById(id).populate("accessories").lean();
+    return cube;
+}
+
+module.exports = { getCubes, getCube, updateCube, getCubeWithAccessories };
