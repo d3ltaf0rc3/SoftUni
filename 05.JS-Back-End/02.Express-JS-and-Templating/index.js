@@ -6,7 +6,7 @@ const express = require('express');
 const indexRouter = require("./routes/index");
 const app = express();
 
-mongoose.set("useFindAndModify", false)
+mongoose.set("useFindAndModify", false);
 
 mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (err) throw err;
