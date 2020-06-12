@@ -1,9 +1,13 @@
 const express = require("express");
-const { saveUser } = require("../controllers/user");
+const { saveUser, logUser } = require("../controllers/user");
 const router = express.Router();
 
 router.get("/login", (req, res) => {
     res.render("loginPage");
+});
+
+router.post("/login", (req, res) => {
+    logUser(req, res);
 });
 
 router.get("/register", (req, res) => {
