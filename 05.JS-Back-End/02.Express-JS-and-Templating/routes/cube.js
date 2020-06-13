@@ -2,23 +2,31 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const Cube = require("../models/cube");
 const { getCubeWithAccessories } = require("../controllers/cubes");
+const { checkAuth, isLogged, checkAuthJSON } = require("../controllers/user");
 const router = express.Router();
 
-router.get("/edit", (req, res) => {
-    res.render("editCubePage");
-});
-
-router.get("/delete", (req, res) => {
-    res.render("deleteCubePage");
-});
-
-router.get("/create", (req, res) => {
-    res.render("create", {
-        title: "Create | Cube Workshop"
+router.get("/edit", checkAuth, isLogged, (req, res) => {
+    res.render("editCubePage", {
+        title: "Edit Cube | Cube Workshop",
+        isLoggedIn: req.isLoggedIn
     });
 });
 
-router.post("/create", async (req, res) => {
+router.get("/delete", checkAuth, isLogged, (req, res) => {
+    res.render("deleteCubePage", {
+        title: "Delete Cube | Cube Workshop",
+        isLoggedIn: req.isLoggedIn
+    });
+});
+
+router.get("/create", checkAuth, isLogged, (req, res) => {
+    res.render("create", {
+        title: "Create | Cube Workshop",
+        isLoggedIn: req.isLoggedIn
+    });
+});
+
+router.post("/create", checkAuthJSON, async (req, res) => {
     const { name, description, imageUrl, difficulty } = req.body;
     const token = req.cookies.aid;
     const decodedObj = jwt.verify(token, process.env.KEY);
@@ -29,13 +37,14 @@ router.post("/create", async (req, res) => {
     res.redirect("/");
 });
 
-router.get("/details/:id", async (req, res) => {
+router.get("/details/:id", isLogged, async (req, res) => {
     const id = req.params.id;
     const cube = await getCubeWithAccessories(id);
 
     res.render("details", {
         title: "Details | Cube Workshop",
-        ...cube
+        ...cube,
+        isLoggedIn: req.isLoggedIn
     });
 });
 

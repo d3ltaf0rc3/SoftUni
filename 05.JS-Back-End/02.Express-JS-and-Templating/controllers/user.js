@@ -58,7 +58,70 @@ async function logUser(req, res) {
     }
 }
 
+function checkAuth(req, res, next) {
+    const token = req.cookies.aid;
+
+    if (!token) {
+        return res.redirect("/");
+    }
+
+    try {
+        jwt.verify(token, process.env.KEY);
+        next();
+    } catch (error) {
+        return res.redirect("/");
+    }
+}
+
+function guestAccess(req, res, next) {
+    const token = req.cookies.aid;
+
+    if (token) {
+        return res.redirect("/");
+    }
+    next();
+}
+
+function isLogged(req, res, next) {
+    const token = req.cookies.aid;
+
+    if (!token) {
+        req.isLoggedIn = false;
+    }
+
+    try {
+        jwt.verify(token, process.env.KEY);
+        req.isLoggedIn = true;
+    } catch (error) {
+        req.isLoggedIn = false;
+    }
+    next();
+}
+
+function checkAuthJSON(req, res, next) {
+    const token = req.cookies.aid;
+
+    if (!token) {
+        return res.json({
+            error: "Not authenticated!"
+        });
+    }
+
+    try {
+        jwt.verify(token, process.env.KEY);
+        next();
+    } catch (error) {
+        return res.json({
+            error: "Not authenticated!"
+        });
+    }
+}
+
 module.exports = {
     saveUser,
-    logUser
+    logUser,
+    checkAuth,
+    guestAccess,
+    isLogged,
+    checkAuthJSON
 };

@@ -1,23 +1,27 @@
 const express = require("express");
 const { getCubes } = require("../controllers/cubes");
+const { isLogged } = require("../controllers/user");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", isLogged, async (req, res) => {
     res.render("index", {
         title: "Home | Cube Workshop",
-        cubes: await getCubes()
+        cubes: await getCubes(),
+        isLoggedIn: req.isLoggedIn
     });
 });
 
-router.get("/about", (req, res) => {
+router.get("/about", isLogged, (req, res) => {
     res.render("about", {
-        title: "About | Cube Workshop"
+        title: "About | Cube Workshop",
+        isLoggedIn: req.isLoggedIn
     });
 });
 
-router.get("*", (req, res) => {
+router.get("*", isLogged, (req, res) => {
     res.render("404", {
-        title: "Not found | Cube Workshop"
+        title: "Not found | Cube Workshop",
+        isLoggedIn: req.isLoggedIn
     });
 });
 
