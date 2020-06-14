@@ -7,9 +7,11 @@ const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const cubeRouter = require("./routes/cube");
 const accessoryRouter = require("./routes/accessory");
+
 const app = express();
 
 mongoose.set("useFindAndModify", false);
+mongoose.set('useCreateIndex', true);
 
 mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (err) throw err;

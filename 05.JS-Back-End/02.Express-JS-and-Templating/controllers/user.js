@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { getCube } = require("../controllers/cubes");
 
 const privateKey = process.env.KEY;
 
@@ -117,11 +118,30 @@ function checkAuthJSON(req, res, next) {
     }
 }
 
+async function isCreator(req) {
+    const token = req.cookies.aid;
+    if (!token) {
+        return false;
+    }
+    const decoded = jwt.verify(token, process.env.KEY);
+    const uid = decoded.userID;
+
+    const cube = await getCube(req.params.id);
+
+
+    if (uid === cube.creatorId.toString()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 module.exports = {
     saveUser,
     logUser,
     checkAuth,
     guestAccess,
     isLogged,
-    checkAuthJSON
+    checkAuthJSON,
+    isCreator
 };

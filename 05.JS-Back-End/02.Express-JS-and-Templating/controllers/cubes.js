@@ -23,4 +23,8 @@ async function getCubeWithAccessories(id) {
     return cube;
 }
 
-module.exports = { getCubes, getCube, updateCube, getCubeWithAccessories };
+async function editCube(id, cube) {
+    await Cube.findByIdAndUpdate(id, cube);
+}
+
+module.exports = { getCubes, getCube, updateCube, getCubeWithAccessories, editCube };
