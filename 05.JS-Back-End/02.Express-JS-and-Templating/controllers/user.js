@@ -85,7 +85,6 @@ function guestAccess(req, res, next) {
 
 function isLogged(req, res, next) {
     const token = req.cookies.aid;
-
     if (!token) {
         req.isLoggedIn = false;
     }
