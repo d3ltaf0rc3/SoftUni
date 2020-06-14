@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const Cube = require("../models/cube");
-const { getCubeWithAccessories, editCube, getCube } = require("../controllers/cubes");
+const { getCubeWithAccessories, editCube, getCube, deleteCube } = require("../controllers/cubes");
 const { checkAuth, isLogged, checkAuthJSON, isCreator } = require("../controllers/user");
 const router = express.Router();
 
@@ -38,11 +38,14 @@ router.get("/delete/:id", checkAuth, isLogged, async (req, res) => {
     });
 });
 
-router.delete("/delete/:id", checkAuthJSON, async (req, res) => {
+router.post("/delete/:id", checkAuthJSON, async (req, res) => {
     const result = await isCreator(req);
     if (!result) {
         return res.redirect(`/details/${req.params.id}`);
     }
+
+    await deleteCube(req.params.id);
+    res.redirect("/");
 });
 
 router.get("/create", checkAuth, isLogged, (req, res) => {

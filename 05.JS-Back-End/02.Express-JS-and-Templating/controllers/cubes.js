@@ -27,4 +27,8 @@ async function editCube(id, cube) {
     await Cube.findByIdAndUpdate(id, cube);
 }
 
-module.exports = { getCubes, getCube, updateCube, getCubeWithAccessories, editCube };
+async function deleteCube(id) {
+    await Cube.findByIdAndDelete({ _id: id });
+}
+
+module.exports = { getCubes, getCube, updateCube, getCubeWithAccessories, editCube, deleteCube };
