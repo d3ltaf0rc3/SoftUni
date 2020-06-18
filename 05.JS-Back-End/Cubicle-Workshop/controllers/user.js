@@ -13,25 +13,25 @@ function generateJwtToken(data) {
 
 function saveUser(req, res) {
     const { username, password, repeatPassword } = req.body;
-
     if (password === repeatPassword) {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(password, salt, async (err, hash) => {
-                const user = new User({ username, password: hash });
-                const userObject = await user.save();
-
-                const token = generateJwtToken({
-                    userID: userObject._id,
-                    username: userObject.username
-                });
-
-                res.cookie("aid", token);
-
-                res.redirect("/");
+                try {
+                    const user = new User({ username, password: hash });
+                    const userObject = await user.save();
+                    const token = generateJwtToken({
+                        userID: userObject._id,
+                        username: userObject.username
+                    });
+                    res.cookie("aid", token);
+                    return res.redirect("/");
+                } catch (error) {
+                    return res.redirect("/register?error=true");
+                }
             });
         });
     } else {
-        res.redirect("/register");
+        res.redirect("/register?error=true");
     }
 }
 
@@ -40,7 +40,7 @@ async function logUser(req, res) {
     const user = await User.findOne({ username });
 
     if (user === null) {
-        res.redirect("/login");
+        return res.redirect("/login?error=true");
     }
 
     const status = await bcrypt.compare(password, user.password);
@@ -55,7 +55,7 @@ async function logUser(req, res) {
 
         res.redirect('/');
     } else {
-        res.redirect("/login");
+        res.redirect("/login?error=true");
     }
 }
 
