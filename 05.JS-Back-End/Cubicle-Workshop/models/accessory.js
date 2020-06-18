@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const AccessorySchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        match: [/^[a-z\d\s]+$/i, "Name should only consist of english letters, digits and spaces!"]
     },
     imageUrl: {
         type: String,
@@ -12,7 +14,9 @@ const AccessorySchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxlength: 2000
+        maxlength: 2000,
+        minlength: 20,
+        match: [/^[a-z\d\s]+$/i, "Description should only consist of english letters, digits and spaces!"]
     },
     cubes: [{
         type: "ObjectId",
@@ -22,6 +26,6 @@ const AccessorySchema = new mongoose.Schema({
 
 AccessorySchema.path("imageUrl").validate(function (url) {
     return url.startsWith("https") || url.startsWith("http");
-}, "Image URL is invalid!");
+}, "Image URL should start with either http or https!");
 
 module.exports = mongoose.model("Accessory", AccessorySchema);

@@ -60,10 +60,24 @@ router.post("/create", checkAuthJSON, async (req, res) => {
     const token = req.cookies.aid;
     const decodedObj = jwt.verify(token, process.env.KEY);
 
-    const newCube = new Cube({ name, description, imageUrl, difficulty, creatorId: decodedObj.userID });
-    await newCube.save();
-
-    res.redirect("/");
+    try {
+        const newCube = new Cube({
+            name: name.trim(),
+            description: description.trim(),
+            imageUrl,
+            difficulty,
+            creatorId: decodedObj.userID
+        });
+        await newCube.save();
+        return res.redirect("/");
+    } catch (error) {
+        res.render("create", {
+            title: "Create | Cube Workshop",
+            isLoggedIn: req.isLoggedIn,
+            error: true,
+            message: "Invalid cube details!"
+        });
+    }
 });
 
 router.get("/details/:id", isLogged, async (req, res) => {

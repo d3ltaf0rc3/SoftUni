@@ -15,10 +15,22 @@ router.get("/create/accessory", checkAuth, isLogged, (req, res) => {
 router.post("/create/accessory", checkAuthJSON, async (req, res) => {
     const { name, description, imageUrl } = req.body;
 
-    const accessory = new Accessory({ name, description, imageUrl });
-    await accessory.save();
-
-    res.redirect("/");
+    try {
+        const accessory = new Accessory({
+            name: name.trim(),
+            description: description.trim(),
+            imageUrl
+        });
+        await accessory.save();
+        return res.redirect("/");
+    } catch (error) {
+        res.render("createAccessory", {
+            title: "Create accessory | Cube Workshop",
+            isLoggedIn: req.isLoggedIn,
+            error: true,
+            message: "Invalid accessory details!"
+        });
+    }
 });
 
 router.get("/attach/accessory/:id", checkAuth, isLogged, async (req, res) => {

@@ -3,12 +3,16 @@ const mongoose = require("mongoose");
 const CubeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        match: [/^[a-z\d\s]+$/i, "Name should only consist of english letters, digits and spaces!"]
     },
     description: {
         type: String,
         required: true,
-        maxlength: 2000
+        minlength: 20,
+        maxlength: 200,
+        match: [/^[a-z\d\s]+$/i, "Description should only consist of english letters, digits and spaces!"]
     },
     imageUrl: {
         type: String,
@@ -32,6 +36,6 @@ const CubeSchema = new mongoose.Schema({
 
 CubeSchema.path("imageUrl").validate(function (url) {
     return url.startsWith("https") || url.startsWith("http");
-}, "Image URL is invalid!");
+}, "Image URL should start with either http or https!");
 
 module.exports = mongoose.model("Cube", CubeSchema);
