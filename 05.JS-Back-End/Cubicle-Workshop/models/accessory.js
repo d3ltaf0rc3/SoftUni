@@ -14,7 +14,7 @@ const AccessorySchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxlength: 2000,
+        maxlength: 200,
         minlength: 20,
         match: [/^[a-z\d\s]+$/i, "Description should only consist of english letters, digits and spaces!"]
     },
