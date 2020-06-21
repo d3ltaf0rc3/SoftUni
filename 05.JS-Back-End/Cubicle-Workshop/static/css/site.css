@@ -252,6 +252,10 @@ h2 {
 }
 
 footer {
+  position: fixed;
+  bottom: 0rem;
+  left: 0rem;
+  right: 0rem;
   background: #607588;
   padding: 1em;
   text-align: center;
