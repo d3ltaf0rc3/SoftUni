@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { dbUrl } = require("./config");
 
 mongoose.set("useFindAndModify", false);
+mongoose.set('useCreateIndex', true);
 
 function connect() {
     mongoose.connect(dbUrl, {

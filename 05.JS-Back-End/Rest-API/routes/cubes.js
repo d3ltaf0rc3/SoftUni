@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { authenticate } = require("../utils/auth");
 const Cube = require("../models/cube");
 const router = Router();
 
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
     });
 });
 
-router.post("/add", async (req, res) => {
+router.post("/add", authenticate, async (req, res) => {
     const cube = new Cube({ ...req.body });
     await cube.save();
 
@@ -20,7 +21,7 @@ router.post("/add", async (req, res) => {
     });
 });
 
-router.put("/edit/:id", (req, res) => {
+router.put("/edit/:id", authenticate, (req, res) => {
     const id = req.params.id;
     Cube.findByIdAndUpdate(id, { ...req.body }, err => {
         let message;
@@ -34,7 +35,7 @@ router.put("/edit/:id", (req, res) => {
     });
 });
 
-router.delete("/delete/:id", (req, res) => {
+router.delete("/delete/:id", authenticate, (req, res) => {
     const id = req.params.id;
     Cube.findByIdAndDelete(id, err => {
         let message;
