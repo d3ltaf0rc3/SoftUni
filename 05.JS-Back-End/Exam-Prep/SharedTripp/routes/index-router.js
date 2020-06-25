@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require("../models/user");
-const { registerUser, isLoggedIn, logInUser } = require("../controllers/user");
+const { registerUser, isLoggedIn, logInUser, isAuth } = require("../controllers/user");
 const router = express.Router();
 
 router.get("/", isLoggedIn, (req, res) => {
@@ -11,7 +11,7 @@ router.get("/", isLoggedIn, (req, res) => {
     });
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", isAuth, (req, res) => {
     res.clearCookie("auth-token");
     res.clearCookie("email");
     res.redirect("/");

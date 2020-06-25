@@ -1,11 +1,11 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const { isLoggedIn } = require("../controllers/user");
-const { getTrips, getTrip } = require("../controllers/trip");
+const { isLoggedIn, isAuth, getUser } = require("../controllers/user");
+const { getTrips, getTrip, deleteTrip, addUserToTrip } = require("../controllers/trip");
 const Trip = require("../models/trip");
 const router = express.Router();
 
-router.get("/trips", isLoggedIn, async (req, res) => {
+router.get("/trips", isAuth, isLoggedIn, async (req, res) => {
     const trips = await getTrips();
 
     res.render("sharedTripps", {
@@ -16,7 +16,7 @@ router.get("/trips", isLoggedIn, async (req, res) => {
     });
 });
 
-router.get("/trips/add", isLoggedIn, (req, res) => {
+router.get("/trips/add", isAuth, isLoggedIn, (req, res) => {
     res.render("offerTripp", {
         title: "Create | SharedTripps",
         isLoggedIn: req.isLoggedIn,
@@ -52,21 +52,40 @@ router.post("/trips/add", isLoggedIn, async (req, res) => {
     }
 });
 
-router.get("/trips/details/:id", isLoggedIn, async (req, res) => {
+router.get("/trips/details/:id", isAuth, isLoggedIn, async (req, res) => {
     const id = req.params.id;
-
     const trip = await getTrip(id);
 
-    const user = jwt.verify(req.cookies["auth-token"], process.env.KEY);
-    const isCreator = user.userID == trip.creatorId ? true : false;
+    const creator = await getUser(trip.creatorId);
+    const isCreator = creator.email === req.email;
+    const leftSeats = trip.seats - trip.buddies.length;
+    const noSeats = leftSeats === 0;
+    const hasJoined = trip.buddies.includes(req.email);
 
     res.render("trippDetails", {
         title: "Trip Details | SharedTripps",
         isLoggedIn: req.isLoggedIn,
         email: req.email,
+        creator: creator.email,
         ...trip,
-        isCreator
+        isCreator,
+        buddies: trip.buddies.join(", "),
+        leftSeats,
+        noSeats,
+        hasJoined
     });
+});
+
+router.get("/trips/delete/:id", isAuth, async (req, res) => {
+    const id = req.params.id;
+    await deleteTrip(id);
+    res.redirect("/trips/");
+});
+
+router.get("/trips/join/:id", isAuth, isLoggedIn, async (req, res) => {
+    const id = req.params.id;
+    await addUserToTrip(req.email, id);
+    res.redirect(`/trips/details/${id}`);
 });
 
 module.exports = router;

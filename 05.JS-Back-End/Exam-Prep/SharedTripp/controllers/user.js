@@ -69,8 +69,28 @@ async function logInUser(req, res) {
     }
 }
 
+function isAuth(req, res, next) {
+    const token = req.cookies["auth-token"];
+    if (!token) {
+        return res.redirect("/login");
+    }
+
+    try {
+        jwt.verify(token, process.env.KEY);
+        next();
+    } catch (error) {
+        return res.redirect("/login");
+    }
+}
+
+async function getUser(id) {
+    return await User.findById(id).lean();
+}
+
 module.exports = {
     registerUser,
     isLoggedIn,
-    logInUser
+    logInUser,
+    isAuth,
+    getUser
 };
