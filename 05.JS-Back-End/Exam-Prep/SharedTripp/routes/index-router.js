@@ -37,9 +37,11 @@ router.post("/register", async (req, res) => {
     await registerUser(req, res);
 });
 
-router.get("*", (req, res) => {
+router.get("*", isLoggedIn, (req, res) => {
     res.render("404", {
-        title: "Not found | SharedTripp"
+        title: "Not found | SharedTripp",
+        isLoggedIn: req.isLoggedIn,
+        email: req.email
     });
 });
 

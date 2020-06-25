@@ -28,7 +28,15 @@ const TripSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
-    }
+    },
+    creatorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    buddies: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }]
 });
 
 module.exports = mongoose.model("Trip", TripSchema);
