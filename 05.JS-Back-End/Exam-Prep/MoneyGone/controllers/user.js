@@ -70,8 +70,52 @@ async function logInUser(req, res) {
     }
 }
 
+async function addAmount(req, res) {
+    const { amount } = req.body;
+    if (!amount) {
+        return res.redirect("/expenses/");
+    }
+    const userObject = jwt.verify(req.cookies["auth-token"], process.env.KEY);
+    await User.findOneAndUpdate(userObject.userID, { $inc: { 'amount': amount } });
+    res.redirect("/expenses/");
+}
+
+function isAuth(req, res, next) {
+    const token = req.cookies["auth-token"];
+
+    if (!token) {
+        return next();
+    }
+
+    const decoded = jwt.verify(token, process.env.KEY);
+
+    if (decoded) {
+        return res.redirect("/expenses/");
+    } else {
+        return next();
+    }
+}
+
+function isNotAuth(req, res, next) {
+    const token = req.cookies["auth-token"];
+
+    if (!token) {
+        return res.redirect("/login");
+    }
+
+    try {
+        jwt.verify(token, process.env.KEY);
+        return next();
+    } catch (error) {
+        return res.redirect("/login");
+    }
+}
+
 module.exports = {
     registerUser,
     isLoggedIn,
-    logInUser
+    logInUser,
+    addAmount,
+    isAuth,
+    isNotAuth
 };

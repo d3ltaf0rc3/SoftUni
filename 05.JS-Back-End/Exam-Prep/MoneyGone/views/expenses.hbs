@@ -1,19 +1,20 @@
 <main>
 
     <section class="actions">
-        <form action="">
+        <form action="/expenses/refill" method="POST">
             <h2>Salary time? Refill your account amount.</h2>
-            <input type="text" id="refill-amount">
+            <input type="text" name="amount" id="refill-amount">
             <button type="submit">Refill</button>
         </form>
         <div>
             <h2>New expense comming up?</h2>
-            <a href="#">Add it now</a>
+            <a href="/expenses/add">Add it now</a>
         </div>
     </section>
 
     <hr class="separator">
 
+    {{#if expenses}}
     <table class="expenses">
         <thead>
             <tr>
@@ -26,79 +27,71 @@
 
         </thead>
         <tbody>
+            {{#each expenses}}
             <tr>
                 <td>
-                    <img src="static/images/date.png" />
-                    <p>October 25</p>
+                    <img src="/images/date.png" />
+                    <p class="date">{{date}}</p>
                 </td>
                 <td>
-                    <p>Shoes</p>
+                    <p>{{merchant}}</p>
+                    {{#if report}}
                     <div class="report">
-                        <a href="#">Report</a>
+                        <a href="/expenses/report/{{_id}}">Report</a>
                     </div>
+                    {{/if}}
                 </td>
                 <td>
-                    <img src="static/images/amount.png" alt="">
-                    <p>лв 123.00</p>
+                    <img src="/images/amount.png" alt="">
+                    <p class="total">лв {{total}}</p>
                 </td>
                 <td>
-                    <img src="static/images/category.png" alt="">
-                    <p>Other</p>
+                    <img src="/images/category.png" alt="">
+                    <p>{{category}}</p>
                 </td>
                 <td>
-                    <img src="static/images/hastag.png" alt="">
-                    <p>I fucked up...</p>
+                    <img src="/images/hastag.png" alt="">
+                    <p>{{description}}</p>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <img src="static/images/date.png" />
-                    <p>October 26</p>
-                </td>
-                <td>
-                    <p>Car supplies</p>
-                    <div class="report">
-                        <a href="#">Report</a>
-                    </div>
-                </td>
-                <td>
-                    <img src="static/images/amount.png" alt="">
-                    <p>лв <span>123.00</span></p>
-                </td>
-                <td>
-                    <img src="static/images/category.png" alt="">
-                    <p>Car</p>
-                </td>
-                <td>
-                    <img src="static/images/hastag.png" alt="">
-                    <p>Regular car stuff....</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="static/images/date.png" />
-                    <p>October 25</p>
-                </td>
-                <td>
-                    <p>Shoes</p>
-                </td>
-                <td>
-                    <img src="static/images/amount.png" alt="">
-                    <p>лв 123.00</p>
-                </td>
-                <td>
-                    <img src="static/images/category.png" alt="">
-                    <p>Other</p>
-                </td>
-                <td>
-                    <img src="static/images/hastag.png" alt="">
-                    <p>Gift to my girl...</p>
-                </td>
-            </tr>
-
+            {{/each}}
         </tbody>
     </table>
-
+    {{else}}
     <h1 class="no-expenses">No expenses founded so far.. <span>GOOD JOB!</span></h1>
-
+    {{/if}}
 </main>
+<script>
+    let dates = Array.from(document.getElementsByClassName("date"));
+
+    dates.forEach(date => {
+        let str = date.textContent.split(" ");
+
+        let year = str[3];
+        let day = str[2];
+        let month;
+
+        switch (str[1]) {
+            case "Jan": month = "01"; break;
+            case "Feb": month = "02"; break;
+            case "Mar": month = "03"; break;
+            case "Apr": month = "04"; break;
+            case "May": month = "05"; break;
+            case "Jun": month = "06"; break;
+            case "Jul": month = "07"; break;
+            case "Aug": month = "08"; break;
+            case "Sep": month = "09"; break;
+            case "Oct": month = "10"; break;
+            case "Nov": month = "11"; break;
+            case "Dec": month = "12";
+        }
+
+        date.textContent = `${year}-${month}-${day}`;
+    })
+
+    let totals = Array.from(document.getElementsByClassName("total"));
+
+    totals.forEach(total => {
+        total.textContent = `лв ${Number(total.textContent.split(" ")[1]).toFixed(2)}`;
+    })
+</script>

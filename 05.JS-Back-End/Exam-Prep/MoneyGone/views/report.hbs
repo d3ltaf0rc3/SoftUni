@@ -2,28 +2,63 @@
 
     <section class="expense-report">
 
-        <h1>ID: 192387048</h1>
+        <h1>ID: {{_id}}</h1>
         <div class="report-date">
-            <img src="static/images/date.png" alt="">
-            <p>October 26, 2019</p>
+            <img src="/images/date.png" alt="">
+            <p class="date">{{date}}</p>
         </div>
 
         <div class="report-category">
-            <img src="static/images/amount.png" alt="">
-            <p>Equipment - лв 123.00</p>
+            <img src="/images/amount.png" alt="">
+            <p class="total">{{category}} - лв {{total}}</p>
         </div>
 
         <div class="report-merchant">
-            <p>Car supplies</p>
+            <p>{{merchant}}</p>
         </div>
 
         <div class="report-description">
-            <img src="static/images/hastag.png" alt="">
-            <p>Deeeeeeeeeeeeeeeeeeeeeeeeeeeescription</p>
+            <img src="/images/hastag.png" alt="">
+            <p>{{description}}</p>
         </div>
 
         <div class="report-action">
-            <a disabled href="#">Stop tracking</a>
+            <a disabled href="/expenses/delete/{{_id}}">Stop tracking</a>
         </div>
     </section>
 </main>
+<script>
+    let dates = Array.from(document.getElementsByClassName("date"));
+
+    dates.forEach(date => {
+        let str = date.textContent.split(" ");
+
+        let year = str[3];
+        let day = str[2];
+        let month;
+
+        switch (str[1]) {
+            case "Jan": month = "01"; break;
+            case "Feb": month = "02"; break;
+            case "Mar": month = "03"; break;
+            case "Apr": month = "04"; break;
+            case "May": month = "05"; break;
+            case "Jun": month = "06"; break;
+            case "Jul": month = "07"; break;
+            case "Aug": month = "08"; break;
+            case "Sep": month = "09"; break;
+            case "Oct": month = "10"; break;
+            case "Nov": month = "11"; break;
+            case "Dec": month = "12";
+        }
+
+        date.textContent = `${year}-${month}-${day}`;
+    })
+
+    let totals = Array.from(document.getElementsByClassName("total"));
+
+    totals.forEach(total => {
+        console.log(total.textContent)
+        total.textContent = `${total.textContent.split(" ")[0]} - лв ${Number(total.textContent.split(" ")[3]).toFixed(2)}`;
+    })
+</script>
