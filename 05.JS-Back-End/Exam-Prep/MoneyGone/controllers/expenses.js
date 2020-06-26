@@ -6,6 +6,27 @@ async function createExpense(req, res) {
     const { merchant, total, currency, category, description, report } = req.body;
     const token = req.cookies["auth-token"];
 
+    if (merchant.length < 4) {
+        return res.render("new-expense", {
+            title: "New Expense | MoneyGone",
+            error: "Merchant must be at least 4 characters!"
+        });
+    }
+
+    if (total <= 0) {
+        return res.render("new-expense", {
+            title: "New Expense | MoneyGone",
+            error: "Total should be a positive number!"
+        });
+    }
+
+    if (description < 10 || description > 50) {
+        return res.render("new-expense", {
+            title: "New Expense | MoneyGone",
+            error: "Description must be between 10 and 50 characters!"
+        });
+    }
+
     try {
         const decodedObj = jwt.verify(token, process.env.KEY);
         const expense = new Expense({

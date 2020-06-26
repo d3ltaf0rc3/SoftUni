@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema({
     },
     amount: {
         type: Number,
-        required: true,
         default: 0
     },
     expenses: [{

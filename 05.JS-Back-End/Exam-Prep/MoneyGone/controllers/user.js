@@ -4,8 +4,30 @@ const User = require("../models/user");
 
 function registerUser(req, res) {
     const { username, password, rePassword, amount } = req.body;
+    const regexp = /^[a-z0-9]{4,}$/i;
+
+    if (amount < 0) {
+        return res.render("register", {
+            title: "Register | MoneyGone",
+            error: "Amount should be equal to or greater than zero!"
+        });
+    }
+
+    if (!regexp.test(username)) {
+        return res.render("register", {
+            title: "Register | MoneyGone",
+            error: "Username should be at least 4 characters and should only consist of english letters and digits!"
+        });
+    }
 
     if (password === rePassword) {
+        if (password.length < 8) {
+            return res.render("register", {
+                title: "Register | MoneyGone",
+                error: "Password should be at least 8 characters!"
+            });
+        }
+
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(password, salt, async (err, hash) => {
                 try {
@@ -27,7 +49,10 @@ function registerUser(req, res) {
             });
         });
     } else {
-        return res.redirect("/register?error=true");
+        return res.render("register", {
+            title: "Register | MoneyGone",
+            error: "Both passwords must be the same!"
+        });
     }
 }
 
@@ -48,10 +73,29 @@ function isLoggedIn(req, res, next) {
 
 async function logInUser(req, res) {
     const { username, password } = req.body;
+    const regexp = /^[a-z0-9]{4,}$/i;
+
+    if (!regexp.test(username)) {
+        return res.render("login", {
+            title: "Login | MoneyGone",
+            error: "Username should be at least 4 characters and should only consist of english letters and digits!"
+        });
+    }
+
+    if (password.length < 8) {
+        return res.render("login", {
+            title: "Login | MoneyGone",
+            error: "Password should be at least 8 characters!"
+        });
+    }
+
     const user = await User.findOne({ username });
 
     if (user === null) {
-        return res.redirect("/login?error=true");
+        return res.render("login", {
+            title: "Login | MoneyGone",
+            error: "Wrong username or password!"
+        });
     }
 
     const status = await bcrypt.compare(password, user.password);
@@ -66,7 +110,10 @@ async function logInUser(req, res) {
 
         res.redirect('/expenses');
     } else {
-        res.redirect("/login?error=true");
+        return res.render("login", {
+            title: "Login | MoneyGone",
+            error: "Wrong username or password!"
+        });
     }
 }
 
