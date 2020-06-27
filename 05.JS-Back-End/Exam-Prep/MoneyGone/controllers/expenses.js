@@ -20,10 +20,17 @@ async function createExpense(req, res) {
         });
     }
 
-    if (description < 10 || description > 50) {
+    if (description.length < 10 || description.length > 50) {
         return res.render("new-expense", {
             title: "New Expense | MoneyGone",
             error: "Description must be between 10 and 50 characters!"
+        });
+    }
+
+    if (category === undefined) {
+        return res.render("new-expense", {
+            title: "New Expense | MoneyGone",
+            error: "Please select a category!"
         });
     }
 

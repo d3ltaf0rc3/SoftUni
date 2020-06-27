@@ -31,7 +31,7 @@ function registerUser(req, res) {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(password, salt, async (err, hash) => {
                 try {
-                    const user = new User({ username, password: hash, amount });
+                    const user = new User({ username, password: hash, amount: amount || 0 });
                     const userObject = await user.save();
 
                     const token = jwt.sign({
@@ -63,8 +63,9 @@ function isLoggedIn(req, res, next) {
     }
 
     try {
-        jwt.verify(token, process.env.KEY);
+        const decoded = jwt.verify(token, process.env.KEY);
         req.isLoggedIn = true;
+        req.user = decoded.username;
     } catch (error) {
         req.isLoggedIn = false;
     }
@@ -123,7 +124,7 @@ async function addAmount(req, res) {
         return res.redirect("/expenses/");
     }
     const userObject = jwt.verify(req.cookies["auth-token"], process.env.KEY);
-    await User.findOneAndUpdate(userObject.userID, { $inc: { 'amount': amount } });
+    await User.findOneAndUpdate({ _id: userObject.userID }, { $inc: { 'amount': amount } });
     res.redirect("/expenses/");
 }
 
@@ -158,11 +159,20 @@ function isNotAuth(req, res, next) {
     }
 }
 
+async function getUserData(req, res) {
+    const token = req.cookies["auth-token"];
+    const usrObj = jwt.verify(token, process.env.KEY);
+    const id = usrObj.userID;
+
+    return await User.findById(id).populate("expenses");
+}
+
 module.exports = {
     registerUser,
     isLoggedIn,
     logInUser,
     addAmount,
     isAuth,
-    isNotAuth
+    isNotAuth,
+    getUserData
 };

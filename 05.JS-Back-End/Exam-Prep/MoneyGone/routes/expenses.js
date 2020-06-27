@@ -9,6 +9,7 @@ router.get("/", isNotAuth, isLoggedIn, async (req, res) => {
     res.render("expenses", {
         title: "Expenses | MoneyGone",
         isLoggedIn: req.isLoggedIn,
+        user: req.user,
         expenses
     });
 });
@@ -16,7 +17,8 @@ router.get("/", isNotAuth, isLoggedIn, async (req, res) => {
 router.get("/add", isNotAuth, isLoggedIn, (req, res) => {
     res.render("new-expense", {
         title: "New Expense | MoneyGone",
-        isLoggedIn: req.isLoggedIn
+        isLoggedIn: req.isLoggedIn,
+        user: req.user
     });
 });
 
@@ -40,7 +42,8 @@ router.get("/report/:id", isNotAuth, isLoggedIn, async (req, res) => {
     res.render("report", {
         title: "Report | MoneyGone",
         isLoggedIn: req.isLoggedIn,
-        ...expense
+        ...expense,
+        user: req.user
     });
 });
 
