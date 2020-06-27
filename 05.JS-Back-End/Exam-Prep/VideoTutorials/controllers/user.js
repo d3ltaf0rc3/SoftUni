@@ -5,6 +5,21 @@ const Course = require("../models/course");
 
 function registerUser(req, res) {
     const { username, password, rePassword } = req.body;
+    const regexp = /^[a-z0-9]{5,}$/i;
+
+    if (!regexp.test(username)) {
+        return res.render("register", {
+            title: "Register | Video Tutorials",
+            error: "Username should be at least 5 characters and should only consist of english letterd and digits!"
+        });
+    }
+
+    if (!regexp.test(password)) {
+        return res.render("register", {
+            title: "Register | Video Tutorials",
+            error: "Password should be at least 5 characters and should only consist of english letterd and digits!"
+        });
+    }
 
     if (password === rePassword) {
         bcrypt.genSalt(10, (err, salt) => {
@@ -55,6 +70,22 @@ function isLoggedIn(req, res, next) {
 
 async function logInUser(req, res) {
     const { username, password } = req.body;
+    const regexp = /^[a-z0-9]{5,}$/i;
+
+    if (!regexp.test(username)) {
+        return res.render("login", {
+            title: "Login | Video Tutorials",
+            error: "Username should be at least 5 characters and should only consist of english letterd and digits!"
+        });
+    }
+
+    if (!regexp.test(password)) {
+        return res.render("login", {
+            title: "Login | Video Tutorials",
+            error: "Password should be at least 5 characters and should only consist of english letterd and digits!"
+        });
+    }
+
     const user = await User.findOne({ username });
 
     if (user === null) {

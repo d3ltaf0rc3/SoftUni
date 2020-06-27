@@ -1,9 +1,38 @@
 const Course = require("../models/course");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const { urlencoded } = require("express");
 
 async function createCourse(req, res) {
     const { title, description, imageUrl, isPublic } = req.body;
+
+    if (title.length < 4) {
+        return res.render("create-course", {
+            title: "Create Course | Video Tutorials",
+            username: req.username,
+            isLoggedIn: req.isLoggedIn,
+            error: "Title should be at least 4 characters!"
+        });
+    }
+
+    if (description.length < 20) {
+        return res.render("create-course", {
+            title: "Create Course | Video Tutorials",
+            username: req.username,
+            isLoggedIn: req.isLoggedIn,
+            error: "Description should be at least 20 characters!"
+        });
+    }
+
+    if (!imageUrl.startsWith("https") || !imageUrl.startsWith("http")) {
+        return res.render("create-course", {
+            title: "Create Course | Video Tutorials",
+            username: req.username,
+            isLoggedIn: req.isLoggedIn,
+            error: "Image URL should start with https or http!"
+        });
+    }
+
     const token = req.cookies["auth-token"];
 
     try {
