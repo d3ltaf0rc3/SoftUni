@@ -65,6 +65,10 @@ router.post("/edit/:id", isNotAuthPOST, isCreator, async (req, res) => {
 });
 
 router.get("/search", isNotAuth, isLoggedIn, async (req, res) => {
+    if (!req.query.search) {
+        return res.redirect("/courses/");
+    }
+
     const courses = await getCoursesByTitle(req, res);
     res.render("user-home", {
         pageTitle: "Home | VideoTutorials",
