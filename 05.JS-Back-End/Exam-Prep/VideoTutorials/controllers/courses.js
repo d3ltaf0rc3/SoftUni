@@ -118,6 +118,13 @@ async function getTopCourses() {
     return courses.sort((a, b) => b.usersEnrolled.length - a.usersEnrolled.length).slice(0, 3);
 }
 
+async function getCoursesByTitle(req, res) {
+    const searchQuery = req.query.search;
+    const allCourses = await Course.find().lean();
+    const courses = allCourses.filter(crs => crs.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    return courses;
+}
+
 module.exports = {
     createCourse,
     getCourses,
@@ -125,5 +132,6 @@ module.exports = {
     addUserToCourse,
     editCourse,
     deleteCourse,
-    getTopCourses
+    getTopCourses,
+    getCoursesByTitle
 };

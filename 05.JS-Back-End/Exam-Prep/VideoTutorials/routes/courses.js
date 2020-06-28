@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { isLoggedIn, isNotAuthPOST, isNotAuth, isCreator, hasJoined } = require("../controllers/user");
-const { createCourse, getCourses, getCourse, addUserToCourse, editCourse, deleteCourse } = require("../controllers/courses");
+const { createCourse, getCourses, getCourse, addUserToCourse, editCourse, deleteCourse, getCoursesByTitle } = require("../controllers/courses");
 const router = Router();
 
 router.get("/", isNotAuth, isLoggedIn, async (req, res) => {
@@ -62,6 +62,16 @@ router.get("/edit/:id", isNotAuth, isLoggedIn, async (req, res) => {
 
 router.post("/edit/:id", isNotAuthPOST, isCreator, async (req, res) => {
     await editCourse(req, res);
+});
+
+router.get("/search", isNotAuth, isLoggedIn, async (req, res) => {
+    const courses = await getCoursesByTitle(req, res);
+    res.render("user-home", {
+        pageTitle: "Home | VideoTutorials",
+        username: req.username,
+        isLoggedIn: req.isLoggedIn,
+        courses
+    });
 });
 
 module.exports = router;
