@@ -4,7 +4,7 @@ const getNavigation = (userId) => {
             title: "Home",
             link: "/"
         },{
-            title: "Post",
+            title: "Add Post",
             link: "/post"
         },{
             title: "Login",

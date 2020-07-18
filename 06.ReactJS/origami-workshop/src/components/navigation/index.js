@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className={styles.navigation}>
             <img className={styles.logo} src={logo} alt="logo" />
-            {links.map(link => <Link title={link.title} href={link.link} type="header" />)}
+            {links.map((link, index) => <Link key={index} title={link.title} href={link.link} type="header" />)}
         </header>
     )
 };

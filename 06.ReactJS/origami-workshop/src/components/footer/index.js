@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div>
-            {links.map(link => <Link title={link.title} href={link.link} type="footer" />)}
+            {links.map((link, index) => <Link key={index} title={link.title} href={link.link} type="footer" />)}
             </div>
             <p className={styles["footer-text"]}>Software University &copy; 2020</p>
         </footer>
