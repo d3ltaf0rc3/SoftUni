@@ -20,9 +20,9 @@ class Origamis extends React.Component {
 
     renderOrigamis() {
         const { origamis } = this.state;
-        return origamis.map(origami => {
+        return origamis.map((origami, index) => {
             return (
-                <Origami key={origami._id} {...origami} />
+                <Origami key={origami._id} index={index} {...origami} />
             )
         })
     }

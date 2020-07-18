@@ -7,6 +7,7 @@ const Origami = (props) => {
         <div className={styles.container}>
             <img className={styles["origami-image"]} src={image} alt="blue bird" />
             <p className={styles.description}>
+                <span>{props.index} - </span>
                 {props.description}
             </p>
             <div>
