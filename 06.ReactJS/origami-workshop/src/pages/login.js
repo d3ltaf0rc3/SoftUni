@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import styles from './register.module.css';
 import Wrapper from '../components/wrapper';
 import Title from '../components/title';
@@ -13,7 +13,7 @@ class Login extends Component {
         this.state = {
             username: "",
             password: ""
-        }
+        };
     }
 
     static contextType = UserContext;
@@ -47,8 +47,8 @@ class Login extends Component {
             const response = await promise.json();
 
             if (response.username && authToken) {
-                this.context.logIn(response)
-                this.props.history.push("/")
+                this.context.logIn(response);
+                this.props.history.push("/");
             }
         } catch (error) {
             console.error(error);

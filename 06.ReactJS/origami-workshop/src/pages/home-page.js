@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Wrapper from '../components/wrapper'
 import Title from '../components/title';
 import Origamis from '../components/origamis';
+import UserContext from '../Context';
 
-const Home = () => {
-  return (
-    <Wrapper>
+class Home extends Component {
+  static contextType = UserContext;
+
+  render() {
+    console.log(this.context)
+    return (
+      <Wrapper>
         <Title title="Origamis" />
         <Origamis />
-    </Wrapper>
-  );
+      </Wrapper>
+    );
+  }
 };
 
 export default Home;

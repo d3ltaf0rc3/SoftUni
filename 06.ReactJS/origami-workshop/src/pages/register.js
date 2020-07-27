@@ -4,6 +4,7 @@ import Wrapper from '../components/wrapper';
 import Title from '../components/title';
 import SubmitButton from '../components/button/submit';
 import Input from '../components/input';
+import UserContext from '../Context';
 
 class Register extends Component {
     constructor(props) {
@@ -15,6 +16,8 @@ class Register extends Component {
             rePassword: ""
         }
     }
+
+    static contextType = UserContext;
 
     onChange = (event, type) => {
         const newState = {};
@@ -39,13 +42,14 @@ class Register extends Component {
                         password
                     })
                 })
-    
+
                 const authToken = promise.headers.get("Authorization");
                 document.cookie = `x-auth-token=${authToken}`;
-    
+
                 const response = await promise.json();
-    
+
                 if (response.username && authToken) {
+                    this.context.logIn(response);
                     this.props.history.push("/")
                 }
             } catch (error) {
@@ -55,16 +59,16 @@ class Register extends Component {
     }
 
     render() {
-        const {username, password, rePassword} = this.state;
-        
+        const { username, password, rePassword } = this.state;
+
         return (
             <Wrapper>
                 <div className={styles.container}>
                     <Title title="Register Page" />
                     <form onSubmit={this.handleSubmit}>
-                        <Input title="Username" type="text" id="username" value={username} onChange={(e) => this.onChange(e, "username")}/>
-                        <Input title="Password" type="password" id="password" value={password} onChange={(e) => this.onChange(e, "password")}/>
-                        <Input title="Re-password" type="password" id="rePassword" value={rePassword} onChange={(e) => this.onChange(e, "rePassword")}/>
+                        <Input title="Username" type="text" id="username" value={username} onChange={(e) => this.onChange(e, "username")} />
+                        <Input title="Password" type="password" id="password" value={password} onChange={(e) => this.onChange(e, "password")} />
+                        <Input title="Re-password" type="password" id="rePassword" value={rePassword} onChange={(e) => this.onChange(e, "rePassword")} />
                         <SubmitButton title="Register" />
                     </form>
                 </div>
