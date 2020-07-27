@@ -8,7 +8,6 @@ class Home extends Component {
   static contextType = UserContext;
 
   render() {
-    console.log(this.context)
     return (
       <Wrapper>
         <Title title="Origamis" />
