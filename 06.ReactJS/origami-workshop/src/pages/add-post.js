@@ -5,7 +5,7 @@ import Title from '../components/title';
 import SubmitButton from '../components/button/submit';
 import Origamis from '../components/origamis';
 
-const AddPost = () => {
+const AddPost = (props) => {
     const [post, setPost] = useState();
 
     const handleClick = () => {
@@ -19,6 +19,7 @@ const AddPost = () => {
                 description: post
             })
         })
+            .then(() => props.history.push("/"))
             .catch(err => console.error(err));
     };
 
