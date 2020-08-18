@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import styles from './profile.module.css';
 import Wrapper from '../components/wrapper';
 import Origamis from '../components/origamis';
@@ -9,11 +9,7 @@ const Profile = (props) => {
     const [posts, setPosts] = useState(null);
     const context = useContext(UserContext);
 
-    useEffect(() => {
-        getUser();
-    });
-
-    const getUser = async () => {
+    const getUser = useCallback(async () => {
         const res = await fetch(`http://localhost:9999/api/user?id=${props.match.params.userId}`);
 
         if (!res.ok) {
@@ -24,7 +20,11 @@ const Profile = (props) => {
 
         setUsername(user.username);
         setPosts(user.posts && user.posts.length);
-    }
+    }, [props.match.params.userId, props.history])
+
+    useEffect(() => {
+        getUser();
+    }, [getUser]);
 
     const logOut = () => {
         context.logOut();

@@ -5,7 +5,9 @@ const secret = 'secret';
 
 module.exports = (app) => {
     app.use(cors({
-        exposedHeaders: "Authorization"
+        exposedHeaders: "Authorization",
+        credentials: true,
+        origin: "http://localhost:3000"
     }));
 
     app.use(express.urlencoded({
