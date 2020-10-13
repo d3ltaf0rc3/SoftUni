@@ -1,0 +1,11 @@
+ul {
+    display: inline-block;
+}
+
+a {
+    border-radius: 50%;
+}
+
+li {
+    list-style: none;
+}

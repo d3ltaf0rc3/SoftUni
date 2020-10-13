@@ -1,0 +1,7 @@
+blockquote {
+    font-family: Georgia, serif;
+}
+
+img:first-of-type {
+    float: right;
+}
