@@ -1,0 +1,11 @@
+body {
+  background-color: rgb(238, 238, 238);
+}
+
+body {
+  display: flex;
+}
+
+.card {
+  background-color: rgb(255, 255, 255);
+}

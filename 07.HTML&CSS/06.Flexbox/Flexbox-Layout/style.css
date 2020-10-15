@@ -1,0 +1,9 @@
+body {
+    display: flex;
+}
+
+header, main, aside, footer {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
+}
