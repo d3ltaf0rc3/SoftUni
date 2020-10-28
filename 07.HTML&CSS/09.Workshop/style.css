@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.10.2/css/all.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 100px;
+    box-shadow: 0px 0px 23px -4px rgba(120,120,120,1);
+    background-color: white;
+}
+
+header a {
+    color: #54556E;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    background-color: #9B5DC6;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 23px -7px rgba(120,120,120,1);
+}
+
+.diplomas {
+    padding: 65px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diplomas-content {
+    width: 60%;
+}
+
+.diplomas-content h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    color: #546186;
+}
+
+.diplomas-content > p {
+    margin: 25px 0;
+    font-size: 18px;
+}
+
+.disclaimer p {
+    color: #565656;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.diplomas-images img {
+    width: 550px;
+    margin: auto;
+}
+
+.bubble {
+    position: absolute;
+    background-color: #54546D;
+    top: -350px;
+    right: -100px;
+    z-index: -1;
+    padding: 200px 300px;
+    border-radius: 50%;
+}
+
+.bubble img {
+    width: 250px;
+    position: relative;
+    top: 80px;
+    left: 170px;
+}
+
+.cpe-certificates {
+    background-color: #14162B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+}
+
+.cpe-certificates img {
+    position: relative;
+    top: 70px;
+    right: 70px;
+}
+
+.cpe-content {
+    color: white;
+    width: 65%;
+}
+
+.cpe-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.career-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px;
+}
+
+.career-center img {
+    border-radius: 15px;
+}
+
+.career-center-content {
+    height: 246px;
+    width: 75%;
+    padding-right: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.career-center-content h1 {
+    font-family: "Montserrat", sans-serif;
+    color: #546186;
+    font-size: 28px;
+}
+
+.career-center-content button {
+    outline: 0;
+    color: #9A5DC5;
+    border-radius: 25px;
+    border: 1px solid #9A5DC5;
+    background-color: #ffffff;
+    width: 100%;
+    cursor: pointer;
+    width: 250px;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+footer {
+    background-color: #2C2C3A;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 100px;
+}
+
+footer h3 {
+    color: #9B5DC5;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+footer li {
+    margin: 10px 0;
+}
+
+.icons {
+    margin-bottom: 30px;
+}
+
+.icons i {
+    font-size: 36px;
+    margin-right: 20px;
+}
+
+footer section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
