@@ -1,0 +1,18 @@
+@media screen and (max-width: 884px) {
+    .newsletter-boxes {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .newsletter-bottom {
+        display: flex;
+    }
+    
+    .newsletter-bottom-content {
+        text-align: left;
+    }
+
+    .bottom-logo {
+        width: 128px;
+    }
+}
