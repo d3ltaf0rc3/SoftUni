@@ -1,0 +1,54 @@
+@media screen and (max-width: 600px) {
+    .banner {
+        padding: 3em 0 1em;
+    }
+    .banner h2 {
+        width: 90%;
+        font-size: 1.6em;
+    }
+    .actions li {
+        width: 90%;
+    }
+    .banner .button {
+        width: 100%;
+    }
+    .features {
+        flex-direction: column;
+    }
+    .wrapper {
+        padding: 2em 0 0.5em;
+    }
+    .wrapper>.inner {
+        width: 90%;
+    }
+    header.major {
+        margin-bottom: 0px;
+    }
+    .feature {
+        width: 100%;
+    }
+    .wrapper>.inner.narrow {
+        width: 100%;
+    }
+    .grid-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .grid-form .form-control.narrow, .grid-form .form-control {
+        width: 90%;
+    }
+    .actions li input {
+        width: 100%;
+    }
+    .footer {
+        padding: 2em 0;
+    }
+    .footer:before {
+        width: 90%;
+        left: 5%;
+    }
+    .footer .copyright {
+        margin: 0;
+    }
+}

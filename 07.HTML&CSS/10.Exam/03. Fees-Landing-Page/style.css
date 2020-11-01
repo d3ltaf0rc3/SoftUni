@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
+p, a {
+    font-family: "Lato", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 12px auto 15px;
+}
+
+header img {
+    width: 150px;
+}
+
+header ul {
+    display: flex;
+}
+
+header a {
+    margin-right: 15px;
+    color: #54546D;
+    font-weight: bold;
+}
+
+.fees-section {
+    background: linear-gradient(180deg, #54546d 70%, #fff 50%);
+}
+
+.fees-section h1 {
+    color: #fff;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 28px;
+}
+
+.programmes {
+    display: flex;
+    width: 70%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.program {
+    background-color: #fff;
+    width: 400px;
+    height: 344px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12), 0 1px 8px 0 rgba(0, 0, 0, .2);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.program-content, .only-text {
+    padding: 32px 24px;
+}
+
+.only-text h3 {
+    color: #54546d;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.program-content h3 {
+    color: #54546d;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.program-content p {
+    color: #565656;
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 50px;
+}
+
+.only-text p {
+    color: #54546d;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.only-text p:last-child {
+    margin-top: 10px;
+}
+
+.program-content button {
+    line-height: 19px;
+    color: #fff;
+    background-color: #9a5dc6;
+    padding: 14px 32px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+}
+
+.price-container {
+    color: #fff;
+    font-size: 24px;
+    padding: 15px 0;
+    border-radius: 0 0 8px 8px;
+}
+
+.green {
+    background: linear-gradient(to left, #4cd781, #029a3c);
+    height: 106px;
+}
+
+.green p {
+    margin-bottom: 12px;
+}
+
+.disclaimer {
+    font-size: 18px;
+}
+
+.blue {
+    background: linear-gradient(to left, #629bd0, #4c6b87);
+    height: 106px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+}
+
+.price-type {
+    border-right: 1px solid #ffffff;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.price {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.purple {
+    background: linear-gradient(to left, #8d7ee2, #4a37a5);
+    height: 106px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+}
+
+.calculator {
+    position: absolute;
+    top: 135px;
+    left: -75px;
+}
+
+.education-type {
+    width: 50%;
+    margin: 120px auto 0;
+}
+
+.education-type h1 {
+    color: #54546D;
+    margin-bottom: 20px;
+}
+
+.education-type>p {
+    color: #565656;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.option:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.option:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #565656;
+    padding: 16px;
+}
+
+.option:nth-child(odd) {
+    background-color: #e6e6e6;
+}
+
+.option:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.checks {
+    margin-right: 30px;
+}
+
+.checks img:first-child {
+    margin-right: 130px;
+}
+
+.financing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 100px auto 170px;
+}
+
+.text-content {
+    width: 70%;
+}
+
+.text-content h1 {
+    font-size: 24px;
+    color: #54546d;
+    margin-bottom: 24px;
+}
+
+.text-content p {
+    color: #565656;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.text-content p:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #54546D;
+    text-align: center;
+    padding: 30px 0;
+}
+
+footer p {
+    color: #908fab;
+}
