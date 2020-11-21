@@ -5,7 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AsideComponent } from './aside/aside.component';
 import { PostModule } from '../post/post.module';
-import { UserService } from './user.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,11 +15,10 @@ import { UserService } from './user.service';
   ],
   imports: [
     CommonModule,
-    PostModule
+    PostModule,
+    RouterModule
   ],
-  providers: [
-    UserService
-  ],
+  providers: [],
   exports: [
     HeaderComponent,
     FooterComponent,
