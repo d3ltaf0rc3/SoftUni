@@ -1,26 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ThemeListComponent } from './theme-list/theme-list.component';
-import { AsideComponent } from './aside/aside.component';
-import { ThemeComponent } from './theme/theme.component';
+import { HomeComponent } from './home/home.component';
+import { CoreModule } from './core/core.module';
+import { ThemeModule } from './theme/theme.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ThemeListComponent,
-    AsideComponent,
-    ThemeComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
+    ThemeModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

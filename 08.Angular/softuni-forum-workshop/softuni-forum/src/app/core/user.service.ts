@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
   isLogged = false;
   constructor() {
@@ -16,6 +14,6 @@ export class UserService {
 
   logOut(): void {
     this.isLogged = false;
-    localStorage.setItem('isLogged', 'false');
+    localStorage.setItem('isLogged', '');
   }
 }
