@@ -5,12 +5,14 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
 import { ThemeService } from './theme.service';
 import { ThemeRouterModule } from './theme-routing.module';
 import { DetailComponent } from './detail/detail.component';
+import { NewComponent } from './new/new.component';
 
 @NgModule({
   declarations: [
     ThemeComponent,
     ThemeListComponent,
-    DetailComponent
+    DetailComponent,
+    NewComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,9 @@ export class DetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private themeService: ThemeService) { 
     const id = activatedRoute.snapshot.params.id;
-    themeService.loadTheme(id);
+    themeService.loadTheme(id).subscribe(theme => {
+      this.theme = theme;
+    });
   }
 
   ngOnInit(): void {
