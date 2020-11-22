@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AsideComponent } from './aside/aside.component';
 import { PostModule } from '../post/post.module';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { RouterModule } from '@angular/router';
     PostModule,
     RouterModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   exports: [
     HeaderComponent,
     FooterComponent,

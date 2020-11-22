@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common';
 import { ThemeComponent } from './theme/theme.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
 import { ThemeService } from './theme.service';
+import { ThemeRouterModule } from './theme-routing.module';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
     ThemeComponent,
-    ThemeListComponent
+    ThemeListComponent,
+    DetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ThemeRouterModule,
   ],
   providers: [
     ThemeService
