@@ -8,11 +8,13 @@ import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core.module';
 import { ThemeModule } from './theme/theme.module';
 import { UserModule } from './user/user.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
