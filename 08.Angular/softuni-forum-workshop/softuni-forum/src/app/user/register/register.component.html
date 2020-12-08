@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="register" #f="ngForm">
+    <form class="register" #f="ngForm" (ngSubmit)="submitHandler(f.value)">
         <fieldset>
             <h2>Registration Form</h2>
 
@@ -55,7 +55,7 @@
                 *ngIf="rePasswordInput.touched && passwordInput.touched && passwordInput.value !== rePasswordInput.value">
                 Repeat Password does not match password!</p>
 
-            <button [disabled]="f.invalid">Create Account</button>
+            <button [disabled]="f.invalid" type="submit">Create Account</button>
 
             <p class="text-center">
                 Have an account?

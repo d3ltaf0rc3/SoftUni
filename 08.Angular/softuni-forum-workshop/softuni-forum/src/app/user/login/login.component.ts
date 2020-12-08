@@ -12,7 +12,6 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router) { }
 
   loginHandler(formValue: { email: string, password: string }): void {
-    this.userService.logIn(formValue);
-    this.router.navigate(['/']);
+    this.userService.logIn(formValue).subscribe(() => this.router.navigate(['/']));
   }
 }

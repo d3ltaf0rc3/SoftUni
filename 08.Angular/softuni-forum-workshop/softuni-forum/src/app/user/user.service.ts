@@ -1,19 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { IUser } from '../shared/interfaces/user';
 
 @Injectable()
 export class UserService {
-  isLogged = false;
-  constructor() {
-    this.isLogged = Boolean(localStorage.getItem('isLogged'));
+  currentUser: IUser;
+
+  get isLogged(): boolean {
+    return !!this.currentUser;
+  }
+  constructor(private http: HttpClient) { }
+
+  logIn(formValue: { email: string, password: string }): Observable<IUser> {
+    return this.http.post<IUser>(`http://localhost:3000/api/users/login`, formValue, { withCredentials: true }).pipe(
+      tap((user: IUser) => this.currentUser = user)
+    );
   }
 
-  logIn(formValue: { email: string, password: string }): void {
-    this.isLogged = true;
-    localStorage.setItem('isLogged', 'true');
+  register(formValue: object): Observable<IUser> {
+    return this.http.post<IUser>(`http://localhost:3000/api/users/register`, formValue, { withCredentials: true }).pipe(
+      tap((user: IUser) => this.currentUser = user)
+    );
   }
 
-  logOut(): void {
-    this.isLogged = false;
-    localStorage.setItem('isLogged', '');
+  logOut(): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/users/logout`, {}, { withCredentials: true });
   }
 }
