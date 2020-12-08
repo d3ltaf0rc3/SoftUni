@@ -7,7 +7,7 @@ export class UserService {
     this.isLogged = Boolean(localStorage.getItem('isLogged'));
   }
 
-  logIn(): void {
+  logIn(formValue: { email: string, password: string }): void {
     this.isLogged = true;
     localStorage.setItem('isLogged', 'true');
   }

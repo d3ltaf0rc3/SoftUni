@@ -1,38 +1,39 @@
 <div class="container">
-    <form class="login" action="" method="post">
-
+    <form class="login" #f="ngForm" (ngSubmit)="loginHandler(f.value)">
         <fieldset>
             <h2>Login Form</h2>
 
             <p class="field field-icon">
                 <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-                <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+                <input #emailInput="ngModel" [class.input-error]="emailInput.touched && !!emailInput.errors"
+                    type="email" name="email" id="email" placeholder="john.doe@gmail.com"
+                    pattern="^[\w\d\.]{6,}@gmail\.(bg|com)$" ngModel required>
             </p>
-            <!-- <p class="error">
+            <p class="error" *ngIf="emailInput.touched && emailInput.errors?.required">
                 Email is required!
-            </p> -->
-            <!-- <p class="error">
+            </p>
+            <p class="error" *ngIf="emailInput.touched && emailInput.errors?.pattern">
                 Email is not valid!
-            </p> -->
+            </p>
 
             <p class="field field-icon">
                 <label for="password"><span><i class="fas fa-lock"></i></span></label>
-                <input type="password" name="password" id="password" placeholder="******">
+                <input #passwordInput="ngModel" [class.input-error]="passwordInput.touched && !!passwordInput.errors"
+                    type="password" name="password" id="password" placeholder="******" ngModel required minlength="4">
             </p>
-            <!-- <p class="error">
+            <p class="error" *ngIf="passwordInput.touched && passwordInput.errors?.required">
                 Password is required!
             </p>
-            <p class="error">
+            <p class="error" *ngIf="passwordInput.touched && passwordInput.errors?.minlength">
                 Password must be at least 4 characters!
-            </p> -->
+            </p>
 
-            <button type="button" (click)="login()">Login</button>
+            <button type="submit" [disabled]="f.invalid">Login</button>
 
             <p class="text-center">
                 Have an account?
                 <a routerLink="/user/register">Register</a>
             </p>
-
         </fieldset>
     </form>
 </div>
