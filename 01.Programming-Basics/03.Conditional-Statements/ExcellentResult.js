@@ -1,9 +1,9 @@
-function ExcellentResult (input){
+function excellentResult(input) {
     let mark = Number(input.shift());
 
-    if (mark >= 5.5){
+    if (mark >= 5.5) {
         console.log("Excellent!");
     }
 }
 
-ExcellentResult(["5.5"]);
+excellentResult(["5.5"]);

@@ -1,6 +1,6 @@
-function yardGreening (input) {
+function yardGreening(input) {
     let sqrMs = Number(input.shift());
-    
+
     let price = sqrMs * 7.61;
     let discount = 0.18 * price;
     let finalPrice = price - discount;

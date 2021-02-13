@@ -1,8 +1,8 @@
-function RadToDeg(input){
+function radToDeg(input) {
     let rad = Number(input.shift());
     let deg = rad * 180 / Math.PI;
 
-    console.log(deg.toFixed(0));
+    console.log(parseInt(deg));
 }
 
-RadToDeg(["3.1416"]);
+radToDeg(["3.1416"]);

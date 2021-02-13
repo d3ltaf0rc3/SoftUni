@@ -1,10 +1,10 @@
-function TailoringShop(input){
+function tailoringShop(input) {
     let tables = Number(input.shift());
     let length = Number(input.shift());
     let width = Number(input.shift());
 
-    let coverArea = tables * (length + 2 * 0.30) * (width + 2* 0.30);
-    let squareArea = tables * (length / 2) * (length / 2);
+    let coverArea = tables * (length + 2 * 0.30) * (width + 2 * 0.30);
+    let squareArea = tables * (length / 2) ** 2;
 
     let priceUSD = coverArea * 7 + squareArea * 9;
 
@@ -14,4 +14,4 @@ function TailoringShop(input){
     console.log(`${priceBGN.toFixed(2)} BGN`);
 }
 
-TailoringShop(["5", "1.00" , "0.50"]);
+tailoringShop(["5", "1.00", "0.50"]);

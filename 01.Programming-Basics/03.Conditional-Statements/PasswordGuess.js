@@ -1,12 +1,11 @@
-function PasswordGuess(input){
+function passwordGuess(input) {
     let password = input.shift();
 
-    if (password == "s3cr3t!P@ssw0rd"){
+    if (password == "s3cr3t!P@ssw0rd") {
         console.log("Welcome");
-    }
-    else{
+    } else {
         console.log("Wrong password!");
     }
 }
 
-PasswordGuess();
+passwordGuess();

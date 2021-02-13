@@ -1,7 +1,7 @@
-function SquareArea(input){
+function squareArea(input){
     let a = Number(input.shift());
 
-    console.log(a * a);
+    console.log(a ** 2);
 }
 
-SquareArea(["5"]);
+squareArea(["5"]);

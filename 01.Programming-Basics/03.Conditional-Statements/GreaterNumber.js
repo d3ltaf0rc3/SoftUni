@@ -1,13 +1,12 @@
-function GreaterNumber(input){
+function greaterNumber(input) {
     let numA = Number(input.shift());
     let numB = Number(input.shift());
 
-    if (numA > numB){
+    if (numA > numB) {
         console.log(numA);
-    }
-    else{
+    } else {
         console.log(numB);
     }
 }
 
-GreaterNumber(["5", "3"]);
+greaterNumber(["5", "3"]);

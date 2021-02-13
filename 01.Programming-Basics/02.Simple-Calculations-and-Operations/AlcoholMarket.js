@@ -1,4 +1,4 @@
-function AlcoholMarket(input){
+function alcoholMarket(input) {
     let whiskeyPrice = Number(input.shift());
     let beerLiters = Number(input.shift());
     let wineLiters = Number(input.shift());
@@ -19,4 +19,4 @@ function AlcoholMarket(input){
     console.log(sum.toFixed(2));
 }
 
-AlcoholMarket(["50", "10", "3.5", "6.5", "1"]);
+alcoholMarket(["50", "10", "3.5", "6.5", "1"]);

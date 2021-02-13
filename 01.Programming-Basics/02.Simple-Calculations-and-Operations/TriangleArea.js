@@ -1,4 +1,4 @@
-function TriangleArea(input){
+function triangleArea(input){
     let a = Number(input.shift());
     let h = Number(input.shift());
 
@@ -7,4 +7,4 @@ function TriangleArea(input){
     console.log(area.toFixed(2));
 }
 
-TriangleArea(["20", "30"]);
+triangleArea(["20", "30"]);

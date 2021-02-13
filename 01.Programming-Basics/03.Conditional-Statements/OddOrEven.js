@@ -1,12 +1,11 @@
-function OddEven(input){
+function oddEven(input) {
     let num = Number(input.shift());
 
-    if (num % 2 == 0){
+    if (num % 2 == 0) {
         console.log("even");
-    }
-    else{
+    } else {
         console.log("odd")
     }
 }
 
-OddEven(["2"]);
+oddEven(["2"]);

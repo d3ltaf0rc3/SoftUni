@@ -1,16 +1,13 @@
-function EqualWords(input){
-    let wordA = input.shift();
-    let wordB = input.shift();
+function equalWords(input) {
+    let wordA = input.shift().toLowerCase();
+    let wordB = input.shift().toLowerCase();
 
-    wordA = wordA.toLowerCase();
-    wordB = wordB.toLowerCase();
-
-    if (wordA == wordB){
+    if (wordA == wordB) {
         console.log("yes");
-    }
-    else{
+    } else {
         console.log("no");
     }
 }
 
-EqualWords(["softuni", "SoftUni"]);
+equalWords(["softuni", "SoftUni"]);
+equalWords(["not", "equal"]);

@@ -1,4 +1,4 @@
-function DanceHall(input){
+function danceHall(input) {
     let length = Number(input.shift());
     let width = Number(input.shift());
     let wardrobeSide = Number(input.shift());
@@ -13,4 +13,4 @@ function DanceHall(input){
     console.log(Math.floor(people));
 }
 
-DanceHall(["50", "25", "2"]);
+danceHall(["50", "25", "2"]);

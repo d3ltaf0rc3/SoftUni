@@ -1,4 +1,4 @@
-function CharityCampaign (input){
+function charityCampaign(input) {
     let days = Number(input.shift());
     let cooks = Number(input.shift());
     let cakes = Number(input.shift());
@@ -15,4 +15,4 @@ function CharityCampaign (input){
     console.log(profit.toFixed(2));
 }
 
-CharityCampaign(["20", "8","14", "30", "16"]);
+charityCampaign(["20", "8", "14", "30", "16"]);

@@ -1,4 +1,4 @@
-function ConcatenateData(input){
+function concatenateData(input) {
    let firstName = input.shift();
    let lastName = input.shift();
    let age = Number(input.shift());
@@ -7,4 +7,4 @@ function ConcatenateData(input){
    console.log(`You are ${firstName} ${lastName}, a ${age}-years old person from ${town}.`);
 }
 
-ConcatenateData(["Martin", "Marinov", "15", "Varna"]);
+concatenateData(["John", "Doe", "21", "Sofia"]);

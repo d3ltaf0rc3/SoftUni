@@ -1,7 +1,7 @@
-function GreetingByName(input){
+function greetingByName(input) {
     let name = input.shift();
-    
+
     console.log(`Hello, ${name}!`);
 }
 
-GreetingByName(["Martin"]);
+greetingByName(["John"]);
