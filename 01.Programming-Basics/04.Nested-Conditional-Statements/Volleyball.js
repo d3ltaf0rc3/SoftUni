@@ -9,12 +9,11 @@ function volleyball(input) {
     let gamesOnHolidays = numberOfHolidays * 2.0 / 3;
     let totalGames = gamesInSofia + gamesInBirthPlace + gamesOnHolidays;
 
-    if (yearType == "leap") {
+    if (yearType === "leap") {
         let additionalGames = totalGames * 0.15;
         let totalLeapGames = totalGames + additionalGames;
         console.log(Math.trunc(totalLeapGames));
-    }
-    else {
+    } else {
         console.log(Math.trunc(totalGames));
     }
 }

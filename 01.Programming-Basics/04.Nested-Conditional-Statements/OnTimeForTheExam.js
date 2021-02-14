@@ -23,6 +23,7 @@ function onTime(input) {
     } else if (differenceMins >= 60) {
         let hour = Math.trunc(differenceMins / 60);
         let min = differenceMins % 60;
+
         if (min < 10) {
             console.log(`${hour}:0${min} hours before the start`);
         } else {
@@ -33,13 +34,12 @@ function onTime(input) {
     } else if (differenceMins <= -60) {
         let hour = Math.trunc(Math.abs(differenceMins / 60));
         let min = Math.abs(differenceMins % 60);
+
         if (min < 10) {
             console.log(`${hour}:0${min} hours after the start`);
         } else {
             console.log(`${hour}:${min} hours after the start`);
         }
-    } else {
-
     }
 }
 

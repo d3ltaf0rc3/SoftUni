@@ -1,79 +1,62 @@
-function fruitShop (input) {
+function fruitShop(input) {
     let fruit = input.shift();
     let day = input.shift();
     let quantity = Number(input.shift());
     let price = 0;
 
-    if (day == "Saturday" || day == "Sunday"){
-        if (fruit == "banana"){
+    if (day === "Saturday" || day === "Sunday") {
+        if (fruit === "banana") {
             price = quantity * 2.7;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "apple"){
+        } else if (fruit === "apple") {
             price = quantity * 1.25;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "orange"){
+        } else if (fruit === "orange") {
             price = quantity * 0.9;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "grapefruit"){
+        } else if (fruit === "grapefruit") {
             price = quantity * 1.6;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "kiwi"){
+        } else if (fruit === "kiwi") {
             price = quantity * 3;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "pineapple"){
+        } else if (fruit === "pineapple") {
             price = quantity * 5.6;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "grapes"){
+        } else if (fruit === "grapes") {
             price = quantity * 4.2;
             console.log(price.toFixed(2));
-        }
-        else {
+        } else {
             console.log("error");
         }
-    }
-    else if (day == "Monday" || day == "Tuesday" || day == "Wednesday" || day == "Thursday" || day == "Friday"){
-        if (fruit == "banana"){
+    } else if (day === "Monday" || day === "Tuesday" || day === "Wednesday" || day === "Thursday" || day === "Friday") {
+        if (fruit === "banana") {
             price = quantity * 2.5;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "apple"){
+        } else if (fruit === "apple") {
             price = quantity * 1.2;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "orange"){
+        } else if (fruit === "orange") {
             price = quantity * 0.85;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "grapefruit"){
+        } else if (fruit === "grapefruit") {
             price = quantity * 1.45;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "kiwi"){
+        } else if (fruit === "kiwi") {
             price = quantity * 2.7;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "pineapple"){
+        } else if (fruit === "pineapple") {
             price = quantity * 5.5;
             console.log(price.toFixed(2));
-        }
-        else if (fruit == "grapes"){
+        } else if (fruit === "grapes") {
             price = quantity * 3.85;
             console.log(price.toFixed(2));
-        }
-        else {
+        } else {
             console.log("error");
         }
-    }
-    else{
+    } else {
         console.log("error")
     }
-    
 }
 
 fruitShop(["apple", "Tuesday", 2]);

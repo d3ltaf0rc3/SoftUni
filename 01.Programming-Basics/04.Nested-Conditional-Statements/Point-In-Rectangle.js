@@ -6,12 +6,11 @@ function pointInRectangle(input) {
     let x = Number(input.shift());
     let y = Number(input.shift());
 
-    if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)){
+    if ((x >= x1 && x <= x2) && (y >= y1 && y <= y2)) {
         console.log("Inside");
-    }
-    else {
+    } else {
         console.log("Outside")
     }
 }
 
-pointInRectangle([2,-3,12,3,11,-3.5]);
+pointInRectangle([2, -3, 12, 3, 11, -3.5]);
