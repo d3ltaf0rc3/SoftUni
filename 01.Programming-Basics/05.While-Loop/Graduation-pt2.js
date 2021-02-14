@@ -7,22 +7,23 @@ function graduation2(input) {
 
     while (grades <= 12) {
         let currentGrade = Number(input.shift());
+
         if (currentGrade < 4.00) {
             failed++;
-        }
-        else {
+        } else {
             total += currentGrade;
             grades++;
         }
+
         if (failed > 1) {
             isFailed = true;
             break;
         }
     }
-    if (isFailed == true) {
+
+    if (isFailed === true) {
         console.log(`${name} has been excluded at ${grades} grade`);
-    }
-    else {
+    } else {
         total = total / 12;
         console.log(`${name} graduated. Average grade: ${total.toFixed(2)}`);
     }

@@ -1,20 +1,21 @@
-function walking (input) {
+function walking(input) {
     let sum = 0;
-    while (sum < 10000){
+
+    while (sum < 10000) {
         let steps = input.shift();
-        if (steps == "Going home"){
+
+        if (steps === "Going home") {
             steps = Number(input.shift());
             sum += Number(steps);
             break;
-        }
-        else {
+        } else {
             sum += Number(steps);
         }
     }
-    if (sum >= 10000){
+
+    if (sum >= 10000) {
         console.log("Goal reached! Good job!")
-    }
-    else {
+    } else {
         let difference = 10000 - sum;
         console.log(`${difference} more steps to reach goal.`);
     }

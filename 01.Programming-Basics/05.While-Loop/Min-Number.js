@@ -3,15 +3,17 @@ function minNumber(input) {
     let counter = 1;
     let min = Number.MAX_SAFE_INTEGER;
     let num = 0;
-    
-    while (counter <= n){
+
+    while (counter <= n) {
         num = Number(input.shift());
-        if (num < min){
+
+        if (num < min) {
             min = num;
         }
         counter++;
     }
+
     console.log(min);
 }
 
-minNumber([2,100,99]);
+minNumber([2, 100, 99]);

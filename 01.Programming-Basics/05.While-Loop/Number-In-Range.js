@@ -1,7 +1,7 @@
-function numberInRange (input) {
+function numberInRange(input) {
     let number = Number(input.shift());
 
-    while (number < 1 || number > 100){
+    while (number < 1 || number > 100) {
         console.log("Invalid number!");
         number = Number(input.shift());
     }
@@ -9,4 +9,4 @@ function numberInRange (input) {
     console.log(`The number is: ${number}`);
 }
 
-numberInRange([105,35]);
+numberInRange([105, 35]);

@@ -4,28 +4,23 @@ function cake(input) {
     let cake = length * width;
     let difference = 0;
 
-    while (cake >= 0){
+    while (cake >= 0) {
         let pieces = input.shift();
-        if (pieces == "STOP"){
+
+        if (pieces === "STOP") {
             break;
-        }
-        else {
+        } else {
             cake -= pieces;
         }
     }
+
     difference = Math.abs(0 - cake);
-    if (cake <= 0){
+
+    if (cake <= 0) {
         console.log(`No more cake left! You need ${difference} pieces more.`);
-    }
-    else {
-        console.log(`${difference} pieces are left.`) 
+    } else {
+        console.log(`${difference} pieces are left.`)
     }
 }
 
-cake(["10",
-    "2",
-    "2",
-    "4",
-    "6",
-    "STOP"
-    ]);
+cake(["10", "2", "2", "4", "6", "STOP"]);

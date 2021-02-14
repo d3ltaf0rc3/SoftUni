@@ -1,11 +1,12 @@
-function account (input) {
+function account(input) {
     let n = Number(input.shift());
     let counter = 1;
     let money = 0;
 
-    while (counter <= n){
+    while (counter <= n) {
         let amount = Number(input.shift());
-        if(amount < 0){
+
+        if (amount < 0) {
             console.log("Invalid operation!");
             break;
         }
@@ -13,6 +14,7 @@ function account (input) {
         money += amount;
         counter++;
     }
+
     console.log(`Total: ${money.toFixed(2)}`);
 }
 
